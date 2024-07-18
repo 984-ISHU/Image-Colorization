@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Image Colorizer - Display</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='bg1.png') }}');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-top: 80px;
+        }
+        .title {
+            color: #f5f5f5; 
+        }
+        .tagline {
+            color: #cfcfcf;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .image-container div {
+            flex: 1;
+            text-align: center;
+            margin: 0 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            max-width: 600px;
+        }
+        .download-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #4caf50; 
+            border-color: #4caf50;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #388e3c;
+            border-color: #388e3c;
+        }
+        .header, .footer {
+            background-color: black;
+            color: #f5f5f5;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+        }
+        .header {
+            top: 0;
+        }
+        .footer {
+            bottom: 0;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 140px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Image Colorizer</h1>
+    </div>
+    <div class="container main-content">
+        <h2 class="title mb-4">See the magic of color transformation!</h2>
+        <div class="image-container">
+            <div>
+                <h3 style="color: #f5f5f5;">Original</h3>
+                <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Original Image" class="img-fluid">
+            </div>
+            <div>
+                <h3 style="color: #f5f5f5;">Colorized</h3>
+                <img src="{{ url_for('colorized_file', filename=filename) }}" alt="Colorized Image" class="img-fluid">
+            </div>
+        </div>
+        <div class="download-button">
+            <form id="download-form" action="{{ url_for('download_colorized', filename=filename) }}" method="get">
+                <button type="submit" class="btn btn-custom">Download Colorized Image</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; Image Colorizer | Caffe model | Project by Ishaan M C and Nagathejas M S</p>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('download-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = this;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', form.action, true);
+            xhr.responseType = 'blob';
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var a = document.createElement('a');
+                    var url = window.URL.createObjectURL(xhr.response);
+                    a.href = url;
+                    a.download = '{{ filename }}';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    a.remove();
+                    window.location.href = '{{ url_for("index") }}';
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>

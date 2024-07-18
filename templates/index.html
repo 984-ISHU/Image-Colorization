@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Colorizer - Upload</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='bg1.png') }}');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); 
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+        }
+        .title {
+            color: #f5f5f5; 
+        }
+        .tagline {
+            color: #cfcfcf; 
+        }
+        .btn-custom {
+            background-color: #4caf50; 
+            border-color: #4caf50;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #388e3c;
+            border-color: #388e3c;
+        }
+        .header, .footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #f5f5f5;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            text-align: center;
+        }
+        .header {
+            top: 0;
+        }
+        .footer {
+            bottom: 0;
+        }
+        .main-content {
+            margin-top: 80px;
+            margin-bottom: 60px;
+        }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 140px);
+        }
+        input[type="file"] {
+            width: auto;
+            max-width: 100%; 
+            height: 30px; 
+            font-size: 14px; 
+            padding: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Image Colorizer</h1>
+    </div>
+    <div class="center-container main-content">
+        <div class="container">
+            <h2 class="title mb-4">Experience the Magic of Colorization!</h2>
+            <p class="tagline mb-4">Upload your grayscale images and let us bring them to life with stunning colors.</p>
+            <form action="/upload" method="post" enctype="multipart/form-data" class="form-inline">
+                <div class="form-group mr-3">
+                    <label for="imageInput" class="mr-2">Select an image:</label>
+                    <input type="file" id="imageInput" name="image" accept="image/*" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-custom">Upload</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; Image Colorizer | Caffe model | Project by Ishaan M C and Nagathejas M S</p>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
