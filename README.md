@@ -15,7 +15,7 @@ This project is an image colorizer web application that uses a deep learning mod
 
 ## Caffe Model
 
-> This repository doesn't contain `colorization_release_v2.caffemodel` file. Download it from [link]() to your 'model' directory.
+> This repository doesn't contain `colorization_release_v2.caffemodel` file. Download it from [link](https://github.com/richzhang/colorization/blob/caffe/colorization/models/colorization_deploy_v2.prototxt) to your 'model' directory.
 
 ### Overview
 
