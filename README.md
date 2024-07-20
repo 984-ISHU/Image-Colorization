@@ -4,6 +4,9 @@
 
 This project is an image colorizer web application that uses a deep learning model to colorize grayscale images. The application is built using Flask, a micro web framework in Python, and utilizes a Caffe model for the colorization process. The goal is to provide users with an easy-to-use interface for uploading grayscale images, processing them through a trained model, and downloading the colorized results.
 
+![Screenshot 2024-07-20 224126](https://github.com/user-attachments/assets/be0df16e-8c91-4e80-8635-660fed388353)
+![Screenshot 2024-07-20 224413](https://github.com/user-attachments/assets/73137705-31b7-46b4-81d2-ba0cab87f4d8)
+
 ## Project Structure
 
 - `app.py`: Main Flask application file handling routes and logic.
